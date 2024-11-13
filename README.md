@@ -1,46 +1,27 @@
-# Getting Started with Create React App
+# Mutual Fund Tracker React Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+This React application is designed to display a list of mutual funds in a table format. The app includes features to filter and search through the mutual funds based on various criteria such as fund name and code. 
 
-## Available Scripts
+Additionally, when a user selects a view more from the list, they are redirected to a **details page** that displays more in-depth information about the selected fund, including fund details expense ratios, and other key data visualizations to aid in decision-making.
 
-In the project directory, you can run:
+### Key Features:
+- **List of Mutual Funds**: Display a table with basic information about multiple mutual funds.
+- **Filtering/Search Functionality**: Filter or search the mutual funds based on name, category, and other criteria.
+- **Details Page**: Click on a mutual fund to view its detailed information, including charts and other data visualizations for performance analysis.
+- **Responsive Design**: The app is fully responsive, ensuring a smooth user experience across all devices.
+  
+## Technologies Used
+- React.js
+- React Router
+- Chart.js data visualization library
+- Tailwind CSS for styling
+- Fetch API for retrieving mutual fund data
 
-### `npm start`
+## Installation
+To get started with the app locally, follow the installation steps below:
+- Clone the repository
+- Run `npm install` to install dependencies
+- Run `npm start` to start the app
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Once the development server is up and running, navigate to `http://localhost:3000` to explore the app.

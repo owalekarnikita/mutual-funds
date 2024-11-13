@@ -82,7 +82,7 @@ const Main = () => {
         <h2 className="p-5 text-4xl font-bold"> {title} </h2>
       </div>
       <hr></hr>
-      <div className="flex items-center justify-center md:justify-between flex-col md:flex-row">
+      <div className="flex items-center justify-center md:justify-between flex-col md:flex-row items-center">
         <div className="flex items-center my-8">
           <div className="relative flex items-center">
             <input
@@ -120,7 +120,7 @@ const Main = () => {
           <select
             id="sort"
             onChange={(e) => handleSort(e.target.value)}
-            className="border border-gray-300 rounded p-2"
+            className="border border-gray-300 rounded p-1"
           >
             <option value="">Select</option>
             <option value="schemeName-asc">Scheme Name (A-Z)</option>
