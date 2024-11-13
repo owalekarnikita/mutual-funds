@@ -38,7 +38,7 @@ const FundList = (data: any) => {
     <>{currentData?.length > 0 && (
     <div>
       <div className="overflow-x-auto hidden md:block">
-        <table className="min-w-full bg-white my-3 border table-responsive">
+        <table className="min-w-full bg-white mb-3 border table-responsive">
           <thead>
             <tr>
               <th className="py-3 px-4 border-b border-gray-200 bg-gray-50 text-left text-gray-600">
@@ -55,7 +55,7 @@ const FundList = (data: any) => {
           <tbody>
             {currentData?.map((fund: any, index: number) => (
               <tr key={index} className="text-gray-700 hover:bg-gray-50">
-                <td className="py-2 px-4 border-b border-gray-200">
+                <td className="py-2 px-4 border-b border-gray-200 hover:text-blue-600">
                   {fund?.schemeName}
                 </td>
                 <td className="py-2 px-4 border-b border-gray-200">

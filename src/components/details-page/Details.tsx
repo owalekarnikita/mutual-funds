@@ -38,7 +38,7 @@ const Details = () => {
       </div>
       <hr className="border-gray-300" />
 
-      <div className="py-6">
+      <div className="pt-6 pb-2 w-fit">
         <Link
           to="/home"
           className="flex items-center text-blue-600 hover:text-blue-800"
@@ -48,27 +48,41 @@ const Details = () => {
         </Link>
       </div>
 
-      <div className="p-6">
+      <div className="p-6 pt-3">
         {fundData && !loading ? (
           <div className="space-y-4 text-gray-700">
-            <p className="text-2xl font-semibold">
-              {fundData?.meta?.fund_house}
-            </p>
-            <h3 className="text-2xl font-semibold"> Fund details : </h3>
-            <p className="text-lg">
-              <span className="font-medium">Scheme Type :</span>{" "}
-              {fundData?.meta?.scheme_type}
-            </p>
-            <p className="text-lg">
-              <span className="font-medium">Scheme Category :</span>{" "}
-              {fundData?.meta?.scheme_category}
-            </p>
-            <p className="text-lg">
-              <span className="font-medium">Scheme Code :</span>{" "}
-              <span className="text-blue-600 font-medium">{fundData?.meta?.scheme_code}</span>
-            </p>
+            {/* <h3 className="text-2xl font-semibold"> details </h3> */}
+            <div className="">
+              <p className="text-lg pb-3">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged.
+              </p>
+              
+              <p className="text-lg font-semibold">
+                <span className="font-medium">Fund House :</span>{" "}
+                {fundData?.meta?.fund_house}
+              </p>
+              <p className="text-lg">
+                <span className="font-medium">Scheme Type :</span>{" "}
+                {fundData?.meta?.scheme_type}
+              </p>
+              <p className="text-lg">
+                <span className="font-medium">Scheme Category :</span>{" "}
+                {fundData?.meta?.scheme_category}
+              </p>
+              <p className="text-lg">
+                <span className="font-medium">Scheme Code :</span>{" "}
+                <span className="text-blue-600 font-medium">
+                  {fundData?.meta?.scheme_code}
+                </span>
+              </p>
+            </div>
             <div className="mt-6 w-full">
-              <Chart chartdata={fundData?.data}/>
+              <Chart chartdata={fundData?.data} />
             </div>
           </div>
         ) : (
