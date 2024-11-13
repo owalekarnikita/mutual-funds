@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Details from "../details-page/Details";
+import { useNavigate } from "react-router-dom";
 
 const FundList = (data: any) => {
-
-  const[listData, setListData] = useState<any>(data?.data);
+  const [listData, setListData] = useState<any>(data?.data);
   const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState<number>(1);
-
+  const navigate = useNavigate();
   const totalPages = Math.ceil((listData?.length || 0) / itemsPerPage);
 
   const currentData = listData?.slice(
@@ -27,15 +27,15 @@ const FundList = (data: any) => {
   };
 
   const handleViewMore = (code: number) => {
-    console.log(code, "code");
+    navigate(`/details/${code}`);
   };
-
 
   useEffect(() => {
     setListData(data?.data);
   }, [data]);
 
   return (
+    <>{currentData?.length > 0 && (
     <div>
       <div className="overflow-x-auto">
         <table className="hidden md:block min-w-full bg-white ">
@@ -97,34 +97,38 @@ const FundList = (data: any) => {
       </div>
 
       {/* Pagination Controls */}
-      <div className="flex justify-center items-center space-x-4 mt-4">
-        <button
-          onClick={handlePreviousPage}
-          disabled={currentPage === 1}
-          className={`px-4 py-2 bg-gray-200 rounded ${
-            currentPage === 1
-              ? "opacity-50 cursor-not-allowed"
-              : "hover:bg-gray-300"
-          }`}
-        >
-          Previous
-        </button>
-        <span>
-          Page {currentPage} of {totalPages}
-        </span>
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-          className={`px-4 py-2 bg-gray-200 rounded ${
-            currentPage === totalPages
-              ? "opacity-50 cursor-not-allowed"
-              : "hover:bg-gray-300"
-          }`}
-        >
-          Next
-        </button>
-      </div>
+      {currentData?.length > 0 && (
+        <div className="flex justify-end items-center space-x-4 mt-4">
+          <button
+            onClick={handlePreviousPage}
+            disabled={currentPage === 1}
+            className={`px-4 py-2 bg-gray-200 rounded ${
+              currentPage === 1
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-gray-300"
+            }`}
+          >
+            Previous
+          </button>
+          <span>
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+            className={`px-4 py-2 bg-gray-200 rounded ${
+              currentPage === totalPages
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-gray-300"
+            }`}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
+    )}
+    </>
   );
 };
 

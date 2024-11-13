@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loader from "../loader/Loader";
 import Chart from "./Chart";
+import BackIcon from '../images/back.png';
 
 const Details = () => {
   const [loading, setLoading] = useState<boolean>();
   const [fundData, setFundData] = useState<any>();
-  const [schemeCode, setSchemeCode] = useState<number>(100027);
+  const [schemeCode, setSchemeCode] = useState<any>(useParams()?.schemeCode);
 
   const getfundDetails = async () => {
     setLoading(true);
@@ -30,10 +31,11 @@ const Details = () => {
 
   return (
     <div>
-      Details
-      <div>
+      <div className="flex justify-center py-5"><h1 className="text-4xl font-bold">Mutual Fund Details </h1></div>
+      <hr></hr>
+      <div className="py-3">
         <Link to={"/home"}>
-          <button>Back to home</button>
+         <div className="flex gap-2 align-middle items-center"><img src={BackIcon} alt="back-icon" width={32}/>Back to home</div>
         </Link>
       </div>
       <div>

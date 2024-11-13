@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import "./main.css";
 import FundList from "../fund-list/FundList";
 import Loader from "../loader/Loader";
+import SearchIcon from "../images/search.png";
+import CloseIcon from "../images/close.png";
+import Nodata from "../nodata/Nodata";
 
 const Main = () => {
-  const [title, setTitle] = useState<string>("");
+  const [title, setTitle] = useState<string>("Mutual Funds List");
   const [listdata, setListdata] = useState<any>();
   const [search, setSearch] = useState<string>("");
   const [loading, setLoading] = useState<boolean>();
   const [searchText, setSearchText] = useState<any>();
+  const [mainListData, setMainListData] = useState<any>();
 
   const getListData = async () => {
     setLoading(true);
@@ -18,6 +21,7 @@ const Main = () => {
       });
       const jsonlistdata = await response.json();
       setListdata(jsonlistdata);
+      setMainListData(jsonlistdata);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -29,14 +33,14 @@ const Main = () => {
     getListData();
   }, []);
 
-  useEffect(()=> {
-    console.log(listdata,"listdata")
-  },[listdata])
+  useEffect(() => {
+    console.log(listdata, "listdata");
+  }, [listdata]);
 
   const onSearchClick = async (e: any) => {
     e.preventDefault();
     setLoading(true);
-    console.log(searchText,"searchText")
+    console.log(searchText, "searchText");
     if (searchText) {
       setListdata([]);
       try {
@@ -59,24 +63,44 @@ const Main = () => {
   };
 
   return (
-    <div>
+    <div className="min-w-full p-3">
       <div className="flex justify-center align-middle">
-        <h2 className="p-5 text-3xl"> Mutual Funds Data {title} </h2>
+        <h2 className="p-5 text-4xl"> {title} </h2>
       </div>
-
+      <hr></hr>
+      <div className="flex items-center my-3 ml-3">
+        <div className="relative flex items-center">
+          <input
+            type="text"
+            placeholder="Search"
+            className="p-2 border-gray-500 border rounded rounded-r-none text-sm"
+            value={searchText}
+            onChange={(e: any) => setSearchText(e?.target?.value)}
+          />
+          <div className="absolute top-2 right-1 bg-no-repeat">
+            <img
+              src={CloseIcon}
+              alt="close-icon"
+              width={18}
+              className="p-1 cursor-pointer"
+              onClick={() => {
+                setSearchText("");
+                setListdata(mainListData);
+              }}
+            />
+          </div>
+        </div>
+        <button
+          onClick={(e) => onSearchClick(e)}
+          className="border-gray-500 border rounded p-2 rounded-l-none border-l-0"
+        >
+          <img src={SearchIcon} alt="search-icon" width={20} />
+        </button>
+      </div>
       <div>
-        <input
-          type="search"
-          placeholder="Search"
-          className="p-3 border-gray-500"
-          value={searchText}
-          onChange={(e: any) => setSearchText(e?.target?.value)}
-        />
-        <button onClick={(e) => onSearchClick(e)}>search</button>
+        {loading && listdata?.length == 0 ? <Loader /> : <FundList data={listdata} />}
       </div>
-      <div>
-        {loading && !listdata ? <Loader /> : <FundList data={listdata} />}
-      </div>
+      {!loading && listdata?.length == 0 && <Nodata />}
     </div>
   );
 };
