@@ -8,8 +8,8 @@ import Nodata from "../nodata/Nodata";
 const Main = () => {
   const [title, setTitle] = useState<string>("Mutual Funds List");
   const [listdata, setListdata] = useState<any>();
-  const [loading, setLoading] = useState<boolean>();
-  const [searchText, setSearchText] = useState<string>();
+  const [loading, setLoading] = useState<boolean>(true);
+  const [searchText, setSearchText] = useState<string>("");
   const [mainListData, setMainListData] = useState<any>();
   const [sortValue, setSortValue] = useState<string>("schemeCode-asc");
 
@@ -33,14 +33,9 @@ const Main = () => {
     getListData();
   }, []);
 
-  useEffect(() => {
-    console.log(listdata, "listdata");
-  }, [listdata]);
-
   const onSearchClick = async (e: any) => {
     e.preventDefault();
     setLoading(true);
-    console.log(searchText, "searchText");
     if (searchText) {
       setListdata([]);
       try {
@@ -88,62 +83,69 @@ const Main = () => {
   return (
     <>
       {!loading ? (
-        <div className="min-w-full p-3">
-          <div className="flex justify-center align-middle">
-            <h2 className="p-5 text-4xl font-bold"> {title} </h2>
+        <div className="min-w-full p-3 pt-1 flex flex-col min-h-screen">
+          <div className="sticky top-0 bg-white z-10 p-5">
+            <h2 className="text-4xl font-bold text-center"> {title} </h2>
+            <hr className="border-gray-300 mt-4" />
           </div>
-          <hr></hr>
-          <div className="flex items-center justify-center sm:justify-between flex-col sm:flex-row align-middle">
-            <div className="flex items-center my-8">
-              <div className="relative flex items-center">
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className="p-2 pl-3 pr-5 border-gray-500 border rounded rounded-r-none text-sm"
-                  value={searchText}
-                  onChange={(e: any) => setSearchText(e?.target?.value)}
-                  style={{ width: 250 }}
-                />
-                <div className="absolute top-2 right-1 bg-no-repeat">
-                  <img
-                    src={CloseIcon}
-                    alt="close-icon"
-                    width={18}
-                    className="p-1 cursor-pointer"
-                    onClick={(e) => {
-                      onSearchClose(e);
-                    }}
+          
+          <div className="flex-1 overflow-y-auto mt-4">
+            <div className="flex items-center justify-center sm:justify-between flex-col sm:flex-row mb-6">
+              <div className="flex items-center my-4">
+                <div className="relative flex items-center">
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    className="p-2 pl-3 pr-5 border-gray-500 border rounded rounded-r-none text-sm"
+                    value={searchText}
+                    onChange={(e: any) => setSearchText(e?.target?.value)}
+                    style={{ width: 250 }}
                   />
+                  <div className="absolute top-2 right-1">
+                    <img
+                      src={CloseIcon}
+                      alt="close-icon"
+                      width={18}
+                      className="p-1 cursor-pointer"
+                      onClick={(e) => {
+                        onSearchClose(e);
+                      }}
+                    />
+                  </div>
                 </div>
+                <button
+                  onClick={(e) => onSearchClick(e)}
+                  className="border-gray-500 border rounded p-2 rounded-l-none border-l-0"
+                >
+                  <img src={SearchIcon} alt="search-icon" width={20} />
+                </button>
               </div>
-              <button
-                onClick={(e) => onSearchClick(e)}
-                className="border-gray-500 border rounded p-2 rounded-l-none border-l-0"
-              >
-                <img src={SearchIcon} alt="search-icon" width={20} />
-              </button>
+              <div className="mb-4 sm:mb-0">
+                <label htmlFor="sort" className="mr-2 font-semibold">
+                  Sort by :
+                </label>
+                <select
+                  id="sort"
+                  onChange={(e) => handleSort(e?.target?.value)}
+                  className="border border-gray-300 rounded p-1"
+                  value={sortValue}
+                >
+                  <option value="schemeCode-asc">
+                    Scheme Code (Ascending)
+                  </option>
+                  <option value="schemeCode-desc">
+                    Scheme Code (Descending)
+                  </option>
+                  <option value="schemeName-asc">Scheme Name (A-Z)</option>
+                  <option value="schemeName-desc">Scheme Name (Z-A)</option>
+                </select>
+              </div>
             </div>
-            <div className="mb-4 sm:mb-0">
-              <label htmlFor="sort" className="mr-2 font-semibold">
-                Sort by :
-              </label>
-              <select
-                id="sort"
-                onChange={(e) => handleSort(e.target.value)}
-                className="border border-gray-300 rounded p-1"
-                value={sortValue}
-              >
-                <option value="schemeCode-asc">Scheme Code (Ascending)</option>
-                <option value="schemeCode-desc">
-                  Scheme Code (Descending)
-                </option>
-                <option value="schemeName-asc">Scheme Name (A-Z)</option>
-                <option value="schemeName-desc">Scheme Name (Z-A)</option>
-              </select>
+            
+            <div>
+              {listdata?.length > 0 ? <FundList data={listdata} /> : <Nodata />}
             </div>
           </div>
-          <div>{listdata?.length > 0 && <FundList data={listdata} />}</div>
-          {!loading && listdata?.length == 0 && <Nodata />}
         </div>
       ) : (
         <Loader />
