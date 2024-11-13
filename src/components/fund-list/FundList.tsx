@@ -37,8 +37,8 @@ const FundList = (data: any) => {
   return (
     <>{currentData?.length > 0 && (
     <div>
-      <div className="overflow-x-auto hidden md:block">
-        <table className="min-w-full bg-white mb-3 border table-responsive">
+      <div className="overflow-x-auto hidden sm:block">
+        <table className="min-w-full bg-white mb-3 border table-auto p-2">
           <thead>
             <tr>
               <th className="py-3 px-4 border-b border-gray-200 bg-gray-50 text-left text-gray-600">
@@ -74,7 +74,7 @@ const FundList = (data: any) => {
           </tbody>
         </table>
       </div>
-      <div className="flex flex-wrap justify-center gap-4 p-4 md:hidden">
+      <div className="flex flex-wrap justify-center gap-4 p-4 sm:hidden">
         {currentData?.map((fund: any, index: number) => (
           <div
             key={index}

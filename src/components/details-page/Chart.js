@@ -27,7 +27,7 @@ const Chart = (chartdata) => {
   return (
     <div className="py-5">
       <div className="w-full flex flex-col justify-center">
-        <div className="flex justify-center"><h2 className="text-2xl font-bold text-blue-600">Mutual Funds</h2></div>
+        <div className="flex justify-center"><h2 className="text-2xl font-bold text-blue-600 pb-3">Net Asset Value(NAV) Details</h2></div>
         <AreaChart
           width={windowWidth}
           height={350}
@@ -54,7 +54,7 @@ const Chart = (chartdata) => {
           />
          
         </AreaChart>
-        <div className="flex justify-center text-blue-600 text-bold text-lg"> Net Asset Value(NAV) Details</div>
+        <div className="flex justify-center text-blue-600 text-bold text-lg">Fund Date</div>
       </div>
     </div>
   );

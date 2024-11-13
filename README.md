@@ -8,6 +8,8 @@ Additionally, when a user selects a view more from the list, they are redirected
 ### Key Features:
 - **List of Mutual Funds**: Display a table with basic information about multiple mutual funds.
 - **Filtering/Search Functionality**: Filter or search the mutual funds based on name, category, and other criteria.
+- **Pagination Functionality**: The app supports pagination, allowing users to view the mutual funds in multiple pages for better navigation when the list is long.
+- **Sort Functionality**: Sort the mutual funds by various criteria (e.g., scheme name, code, etc.) in ascending or descending order.
 - **Details Page**: Click on a mutual fund to view its detailed information, including charts and other data visualizations for performance analysis.
 - **Responsive Design**: The app is fully responsive, ensuring a smooth user experience across all devices.
   
