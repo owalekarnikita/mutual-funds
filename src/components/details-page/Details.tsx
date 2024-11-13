@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Loader from "../loader/Loader";
 import Chart from "./Chart";
@@ -51,7 +51,6 @@ const Details = () => {
       <div className="p-6 pt-3">
         {fundData && !loading ? (
           <div className="space-y-4 text-gray-700">
-            {/* <h3 className="text-2xl font-semibold"> details </h3> */}
             <div className="">
               <p className="text-lg pb-3">
                 Lorem Ipsum is simply dummy text of the printing and typesetting

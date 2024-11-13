@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Details from "../details-page/Details";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const FundList = (data: any) => {
