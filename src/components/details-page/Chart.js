@@ -1,28 +1,63 @@
-import React, { Component } from "react";
-import '../../../node_modules/react-linechart/dist/styles.css';
-import LineChart from 'react-linechart';
+import React, { Component, useEffect, useState } from "react";
+import {
+  LineChart,
+  Line,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  BarChart,
+  Bar,
+  AreaChart,
+  Area,
+} from "recharts";
 
-const Chart = () => {
-    const data = [
-      {
-        color: "steelblue",
-        points: [
-          { x: 1, y: 2 },
-          { x: 3, y: 5 },
-          { x: 7, y: -3 },
-        ],
-      },
-    ];
+const Chart = (chartdata) => {
+  const [windowWidth, setWindowWidth] = useState(
+    window.innerWidth - (window.innerWidth / 100) * 10
+  );
 
-    // npm install recharts
-    return (
-      <div>
-        <div className="App">
-          <h1>My First LineChart</h1>
-          <LineChart width={600} height={400} data={data} />
-        </div>
+  useEffect(() => {
+    const handleResize = () => setWindowWidth( window.innerWidth - ((window.innerWidth / 100) * 10));
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [window.innerWidth]);
+
+  return (
+    <div className="py-5">
+      <div className="w-full flex flex-col justify-center">
+        <div className="flex justify-center"><h2 className="text-2xl font-bold text-blue-600">Mutual Funds</h2></div>
+        <AreaChart
+          width={windowWidth}
+          height={350}
+          data={chartdata?.chartdata}
+          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+        >
+          <defs>
+            <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#ccc" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#ccc" stopOpacity={0} />
+            </linearGradient>
+            
+          </defs>
+          <XAxis dataKey="date" />
+          <YAxis />
+          <CartesianGrid strokeDasharray="3 3" />
+          <Tooltip />
+          <Area
+            type="monotone"
+            dataKey="nav"
+            stroke="#1e88e5"
+            fillOpacity={1}
+            fill="url(#colorUv)"
+          />
+         
+        </AreaChart>
+        <div className="flex justify-center text-blue-600 text-bold text-lg"> Net Asset Value(NAV) Details</div>
       </div>
-    );
-  }
+    </div>
+  );
+};
 
-  export default Chart;
+export default Chart;

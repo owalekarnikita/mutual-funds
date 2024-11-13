@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Loader from "../loader/Loader";
 import Chart from "./Chart";
-import BackIcon from '../images/back.png';
+import BackIcon from "../images/back.png";
 
 const Details = () => {
   const [loading, setLoading] = useState<boolean>();
@@ -17,7 +17,7 @@ const Details = () => {
       });
       const jsonlistdata = await response.json();
       setFundData(jsonlistdata);
-      console.log(jsonlistdata?.meta, "details data");
+      console.log(jsonlistdata, "details data");
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -30,46 +30,51 @@ const Details = () => {
   }, []);
 
   return (
-    <div>
-      <div className="flex justify-center py-5"><h1 className="text-4xl font-bold">Mutual Fund Details </h1></div>
-      <hr></hr>
-      <div className="py-3">
-        <Link to={"/home"}>
-         <div className="flex gap-2 align-middle items-center"><img src={BackIcon} alt="back-icon" width={32}/>Back to home</div>
+    <div className="p-6 bg-white min-h-screen">
+      <div className="flex justify-center mb-4">
+        <h1 className="text-3xl font-bold text-gray-800 pb-3">
+          {fundData?.meta?.scheme_name}
+        </h1>
+      </div>
+      <hr className="border-gray-300" />
+
+      <div className="py-6">
+        <Link
+          to="/home"
+          className="flex items-center text-blue-600 hover:text-blue-800"
+        >
+          <img src={BackIcon} alt="back-icon" width={20} className="mr-2" />
+          <span className="text-lg font-semibold">Back to home</span>
         </Link>
       </div>
-      <div>
-        {fundData && !loading ? (
-          <div className="fund-data">
-              <h1 className="text-3xl font-bold">{fundData?.meta?.scheme_name}</h1>
-              <p className="text-2xl font-semibold">{fundData?.meta?.fund_house}</p>
-              <p className="text-lg">Scheme Type: {fundData?.meta?.scheme_type}</p>
-              <p className="text-lg">Scheme Category: {fundData?.meta?.scheme_category}</p>
-              <p className="text-lg">Scheme Code: {fundData?.meta?.scheme_code}</p>
 
-            {/* <section>
-              <h2>Historical NAV Data</h2>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>NAV</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {fundData.data.map((entry: any, index: number) => (
-                    <tr key={index}>
-                      <td>{entry.date}</td>
-                      <td>{entry.nav}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </section> */}
-            <Chart />
+      <div className="p-6">
+        {fundData && !loading ? (
+          <div className="space-y-4 text-gray-700">
+            <p className="text-2xl font-semibold">
+              {fundData?.meta?.fund_house}
+            </p>
+            <h3 className="text-2xl font-semibold"> Fund details : </h3>
+            <p className="text-lg">
+              <span className="font-medium">Scheme Type :</span>{" "}
+              {fundData?.meta?.scheme_type}
+            </p>
+            <p className="text-lg">
+              <span className="font-medium">Scheme Category :</span>{" "}
+              {fundData?.meta?.scheme_category}
+            </p>
+            <p className="text-lg">
+              <span className="font-medium">Scheme Code :</span>{" "}
+              <span className="text-blue-600 font-medium">{fundData?.meta?.scheme_code}</span>
+            </p>
+            <div className="mt-6 w-full">
+              <Chart chartdata={fundData?.data}/>
+            </div>
           </div>
         ) : (
+          <div className="flex justify-center items-center h-32">
             <Loader />
+          </div>
         )}
       </div>
     </div>

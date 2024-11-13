@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const FundList = (data: any) => {
   const [listData, setListData] = useState<any>(data?.data);
-  const itemsPerPage = 10;
+  const itemsPerPage = 15;
   const [currentPage, setCurrentPage] = useState<number>(1);
   const navigate = useNavigate();
   const totalPages = Math.ceil((listData?.length || 0) / itemsPerPage);
@@ -37,24 +37,24 @@ const FundList = (data: any) => {
   return (
     <>{currentData?.length > 0 && (
     <div>
-      <div className="overflow-x-auto">
-        <table className="hidden md:block min-w-full bg-white ">
+      <div className="overflow-x-auto hidden md:block">
+        <table className="min-w-full bg-white my-3 border table-responsive">
           <thead>
             <tr>
-              <th className="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-gray-600">
+              <th className="py-3 px-4 border-b border-gray-200 bg-gray-50 text-left text-gray-600">
                 Scheme Name
               </th>
-              <th className="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-gray-600">
+              <th className="py-3 px-4 border-b border-gray-200 bg-gray-50 text-left text-gray-600">
                 Scheme Code
               </th>
-              <th className="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-gray-600">
+              <th className="py-3 px-4 border-b border-gray-200 bg-gray-50 text-left text-gray-600">
                 Actions
               </th>
             </tr>
           </thead>
           <tbody>
             {currentData?.map((fund: any, index: number) => (
-              <tr key={index} className="text-gray-700">
+              <tr key={index} className="text-gray-700 hover:bg-gray-50">
                 <td className="py-2 px-4 border-b border-gray-200">
                   {fund?.schemeName}
                 </td>
@@ -64,7 +64,7 @@ const FundList = (data: any) => {
                 <td className="py-2 px-4 border-b border-gray-200">
                   <button
                     onClick={() => handleViewMore(fund?.schemeCode)}
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
+                    className="bg-blue-500 hover:bg-blue-500 text-white text-sm px-3 font-bold py-1  rounded"
                   >
                     View More
                   </button>

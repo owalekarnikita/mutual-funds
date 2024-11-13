@@ -68,12 +68,12 @@ const Main = () => {
         <h2 className="p-5 text-4xl"> {title} </h2>
       </div>
       <hr></hr>
-      <div className="flex items-center my-3 ml-3">
-        <div className="relative flex items-center">
+      <div className="flex items-center my-8 ml-3">
+        <div className="relative flex items-center w-1/3">
           <input
             type="text"
             placeholder="Search"
-            className="p-2 border-gray-500 border rounded rounded-r-none text-sm"
+            className="p-2 pl-3 pr-5 border-gray-500 border rounded rounded-r-none text-sm flex-1"
             value={searchText}
             onChange={(e: any) => setSearchText(e?.target?.value)}
           />
