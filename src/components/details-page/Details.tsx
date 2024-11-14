@@ -9,6 +9,7 @@ const Details = () => {
   const [fundData, setFundData] = useState<any>();
   const { schemeCode } = useParams();
 
+  //mutual fund details api call
   const getFundDetails = async () => {
     setLoading(true);
     try {
