@@ -7,17 +7,6 @@ const FundList = (data: any) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const navigate = useNavigate();
   const totalPages = Math.ceil((listData?.length || 0) / itemsPerPage);
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight - (window.innerHeight/100 *40));
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowHeight(window.innerHeight -  (window.innerHeight/100 *40));
-    };
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []); //window height for small screen cards
 
   const currentData = listData?.slice(
     (currentPage - 1) * itemsPerPage,
@@ -84,7 +73,7 @@ const FundList = (data: any) => {
           </tbody>
         </table>
       </div>
-      <div className="flex flex-wrap justify-center gap-4 p-4 sm:hidden overflow-y-scroll" style={{maxHeight: windowHeight}}>
+      <div className="flex flex-wrap justify-center gap-4 p-4 sm:hidden">
         {currentData?.map((fund: any, index: number) => (
           <div
             key={index}
