@@ -20,8 +20,8 @@ const Main = () => {
         method: "GET",
       });
       const jsonlistdata = await response.json();
-      setListdata(jsonlistdata);
-      setMainListData(jsonlistdata);
+      // setListdata(jsonlistdata);
+      // setMainListData(jsonlistdata);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -84,8 +84,8 @@ const Main = () => {
     <>
       {!loading ? (
         <div className="min-w-full p-3 pt-1 flex flex-col min-h-screen">
-          <div className="sticky top-0 bg-white z-10 p-5">
-            <h2 className="text-4xl font-bold text-center"> {title} </h2>
+          <div className="sticky top-0 bg-white z-10 pt-5">
+            <h2 className="text-4xl font-bold text-center pb-4"> {title} </h2>
             <hr className="border-gray-300 mt-4" />
           </div>
           

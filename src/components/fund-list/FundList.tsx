@@ -63,7 +63,7 @@ const FundList = (data: any) => {
                 <td className="py-2 px-4 border-b border-gray-200">
                   <button
                     onClick={() => handleViewMore(fund?.schemeCode)}
-                    className="bg-blue-500 hover:bg-blue-500 text-white text-sm px-3 font-bold py-1  rounded"
+                    className="bg-blue-500 hover:bg-blue-600 text-white text-sm px-3 font-bold py-1  rounded"
                   >
                     View More
                   </button>

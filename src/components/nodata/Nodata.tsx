@@ -2,9 +2,9 @@ import React from "react";
 
 const Nodata = () => {
   return (
-    <div className="flex justify-center items-center p-5">
-      <div className="p-5 border border-gray-500 h-32 flex justify-center items-center rounded w-1/2">
-        <div>No data Found</div>
+    <div className="flex justify-center items-center">
+      <div className="border border-gray-500 h-48 flex justify-center items-center rounded w-full">
+        <div className="text-xl">No mutual funds are available</div>
       </div>
     </div>
   );
