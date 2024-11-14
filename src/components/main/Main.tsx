@@ -32,15 +32,15 @@ const Main = () => {
       });
       const jsonlistdata = await response.json();
       setListdata(jsonlistdata);
-      console.log("main list data showing");
-      setLoading(false);
     } catch (error) {
+      setListdata([]);
       console.log(error);
       setLoading(false);
     }
+    setLoading(false);
   };
 
-    //search list api call
+  //search list api call
   const onSearchClick = async () => {
     setLoading(true);
     if (searchText) {
@@ -60,8 +60,6 @@ const Main = () => {
         );
         const jsonData = await response.json();
         setListdata(jsonData);
-        console.log("search list added");
-        setLoading(false);
       } catch (error) {
         console.log(error);
         setLoading(false);
@@ -69,10 +67,10 @@ const Main = () => {
     } else {
       setLoading(false);
     }
+    setLoading(false);
   };
 
-  
-    //sort list data filtering
+  //sort list data filtering
   const handleSort = (sortValue: string) => {
     if (sortValue) {
       setSortValue(sortValue);
@@ -94,7 +92,7 @@ const Main = () => {
     }
   };
 
-  //search delete 
+  //search delete
   const onSearchClose = (e: any) => {
     e.preventDefault();
     setSearchText("");
@@ -176,11 +174,11 @@ const Main = () => {
             </div>
 
             <div>
-              {listdata?.length > 0 ? <FundList data={listdata} /> : <Nodata />}
+              {listdata?.length > 0 ? <FundList data={listdata} /> : !loading && listdata?.length == 0 &&  <Nodata />}
             </div>
           </div>
         </div>
-      ) : (
+      ) : ( 
         <Loader />
       )}
     </>
