@@ -72,6 +72,7 @@ const Main = () => {
 
   //sort list data filtering
   const handleSort = (sortValue: string) => {
+    setLoading(true);
     if (sortValue) {
       setSortValue(sortValue);
       dispatch(setSortCriteria(sortValue));
@@ -89,6 +90,7 @@ const Main = () => {
         return 0;
       });
       setListdata(sortedData);
+      setLoading(false);
     }
   };
 

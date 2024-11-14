@@ -31,7 +31,7 @@ Test Case 5.1: Verify that clicking on a mutual fund row redirects the user to t
 Test Case 5.2: Verify that the details page displays comprehensive information for the selected mutual fund, including key metrics and description.
 Test Case 5.3: Verify that charts and data visualizations load accurately on the details page.
 Test Case 5.4: Verify that performance data (e.g., growth over time) is displayed accurately on the details page.
-Test Case 5.5: Verify that the back button on the details page
+Test Case 5.5: Verify that the back button on the details page returns the user to the mutual funds list with their previous filters, pagination, and sorting options intact.
 
 6. Responsive Design
 Test Case 6.1: Verify that the app layout adjusts correctly on different screen sizes (desktop, tablet, and mobile).
